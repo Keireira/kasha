@@ -1,0 +1,79 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+
+    // custom paths
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["./src/*"],
+
+      "@api": ["./src/core/api/index"],
+      "@api/*": ["./src/core/api/*"],
+
+      "@store": ["./src/core/store/index"],
+      "@store/*": ["./src/core/store/*"],
+
+      "@core": ["./src/core"],
+      "@core/*": ["./src/core/*"],
+
+      "@ui": ["./src/ui/index"],
+      "@ui/*": ["./src/ui/*"],
+
+      "@features": ["./src/features/index"],
+      "@features/*": ["./src/features/*"],
+
+      "@data": ["./src/data-lake/index"],
+      "@data/*": ["./src/data-lake/*"],
+
+      "@utils": ["./src/utils/index"],
+      "@utils/*": ["./src/utils/*"],
+
+      "@hooks": ["./src/utils/hooks/index"],
+      "@hooks/*": ["./src/utils/hooks/*"],
+
+      "@yup": ["./src/utils/yup/index"],
+      "@yup/*": ["./src/utils/yup/*"],
+
+      "@icons": ["./src/assets/icons/index"],
+
+      "@images": ["./src/assets/images/index"],
+      "@images/*": ["./src/assets/images/*"],
+
+      "@assets": ["./src/assets/index"],
+      "@assets/*": ["./src/assets/*"],
+
+      "@fonts/*": ["./src/assets/fonts/*"],
+
+      "@views": ["./src/views/index"],
+      "@views/*": ["./src/views/*"],
+
+      "@shared": ["./src/shared-units/index"],
+      "@shared/*": ["./src/shared-units/*"],
+    }
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

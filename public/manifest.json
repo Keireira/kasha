@@ -1,0 +1,44 @@
+{
+  "name": "Kasha",
+  "short_name": "Kasha",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#FF9800",
+  "lang": "en",
+  "scope": "/",
+  "description": "Каша — приложение для iOS и Android для скроллинга двачей",
+  "theme_color": "#FF9800",
+  "id": "kasha-5702b80f-4bcc-4efe-8403-85f7febf90a0",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "16x16 32x32"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/icon-192-maskable.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "categories": ["social"]
+}
