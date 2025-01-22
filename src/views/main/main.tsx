@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import { useAppDispatch } from '@store';
 import { useSelector } from 'react-redux';
 
-import boardsApi from '@data/boards/api';
 import { actions as bordersActs } from '@data/boards';
 import { isInvalidSelector } from '@data/boards/selectors';
-import { useGetAllBoardsQuery } from '@data/boards/api';
+import boardsApi, { useGetAllBoardsQuery } from '@data/boards/api';
 
 import Root from './main.styles';
 import type { Props } from './main.d';

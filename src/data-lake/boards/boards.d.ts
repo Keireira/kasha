@@ -1,5 +1,11 @@
 export type BoardT = {
 	bump_limit: number;
+
+	/*
+	 * Board could not have a category — this is so called 'hidden' board,
+	 * which does not shown in the list of boards on the main page
+	 * EXAMPLES: /dev/, /test/, /rf/
+	 */
 	category: string;
 	default_name: string;
 	enable_dices: boolean;
@@ -8,6 +14,10 @@ export type BoardT = {
 	enable_likes: boolean;
 	enable_names: boolean;
 	enable_oekaki: boolean;
+
+	/*
+	 * If `enable_posting` is `false`, then the board is read-only (archived)
+	 */
 	enable_posting: boolean;
 	enable_sage: boolean;
 	enable_shield: boolean;
@@ -30,4 +40,6 @@ export type BoardsSliceT = {
 	byId: Record<string, BoardT>;
 	allIds: string[];
 	cachedAt: number;
+	categories: string[];
+	boardsByCategory: Record<string, string[]>;
 };

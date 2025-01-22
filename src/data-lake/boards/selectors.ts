@@ -19,3 +19,7 @@ export const boardSelector = createSelector(
 	[boardsSelector, (_, boardId: BoardT['id']) => boardId],
 	(boards, boardId) => boards.byId[boardId]
 );
+
+export const activeBoardsSelector = createSelector([allBoardsSelector], (boards) =>
+	boards.filter((board) => board.enable_posting)
+);
