@@ -102,11 +102,9 @@ const config = ({ mode }) => {
 		server: {
 			port: 4400,
 			open: true
-			// proxy: proxyConfig
 		},
 		preview: {
 			port: 4230
-			// proxy: proxyConfig
 		}
 	});
 };

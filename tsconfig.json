@@ -54,9 +54,6 @@
       "@hooks": ["./src/utils/hooks/index"],
       "@hooks/*": ["./src/utils/hooks/*"],
 
-      "@yup": ["./src/utils/yup/index"],
-      "@yup/*": ["./src/utils/yup/*"],
-
       "@icons": ["./src/assets/icons/index"],
 
       "@images": ["./src/assets/images/index"],
