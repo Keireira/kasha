@@ -32,15 +32,6 @@ function renderChunks(deps) {
 }
 
 const config = ({ mode }) => {
-	const proxyConfig = {
-		'/api': {
-			target: process.env.VITE_REACT_APP_API_URL,
-			changeOrigin: true,
-			withCredentials: true,
-			rewrite: (path) => path.replace(/^\/api/, '')
-		}
-	};
-
 	process.env = {
 		...process.env,
 		...loadEnv(mode, process.cwd()),
@@ -98,7 +89,6 @@ const config = ({ mode }) => {
 				'@ui': fileURLToPath(new URL('./src/ui', import.meta.url)),
 				'@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
 				'@hooks': fileURLToPath(new URL('./src/utils/hooks', import.meta.url)),
-				'@yup': fileURLToPath(new URL('./src/utils/yup', import.meta.url)),
 				'@icons': fileURLToPath(new URL('./src/assets/icons', import.meta.url)),
 				'@images': fileURLToPath(new URL('./src/assets/images', import.meta.url)),
 				'@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
@@ -111,12 +101,12 @@ const config = ({ mode }) => {
 		},
 		server: {
 			port: 4400,
-			open: true,
-			proxy: proxyConfig
+			open: true
+			// proxy: proxyConfig
 		},
 		preview: {
-			port: 4230,
-			proxy: proxyConfig
+			port: 4230
+			// proxy: proxyConfig
 		}
 	});
 };
