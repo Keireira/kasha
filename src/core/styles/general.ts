@@ -6,7 +6,7 @@ const General = createGlobalStyle`
 	:root {
 		--blue-focus: 60% 0.2 257deg;
 
-		--bg-color: #F9F9F9;
+		--bg-color: #eee;
 		--popup-bg: #fefefe;
 
 		--card-hover: #eee;

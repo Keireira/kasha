@@ -7,6 +7,8 @@ import { isInvalidSelector } from '@data/boards/selectors';
 import boardsApi, { useGetAllBoardsQuery } from '@data/boards/api';
 
 import Root from './main.styles';
+import BoardsList from './boards-list';
+
 import type { Props } from './main.d';
 
 const Main = (_props: Props) => {
@@ -20,17 +22,15 @@ const Main = (_props: Props) => {
 	});
 
 	useEffect(() => {
-		if (!isInvalid) return;
-
-		forcedRefetch();
-	}, [isInvalid]);
+		if (!result.isSuccess || result.isFetching) return;
+		dispatch(bordersActs.setBoards(result.data));
+	}, [result.isSuccess, result.isFetching]);
 
 	const forcedRefetch = () => {
 		/*
 		 * If "skip: false", we can refetch by invalidating the tags
 		 * If "skip: true", we can't refetch by invalidating the tags, we have to initialize the query
 		 */
-
 		if (isInvalid) {
 			dispatch(boardsApi.util.invalidateTags(['boards']));
 		} else {
@@ -43,13 +43,11 @@ const Main = (_props: Props) => {
 		}
 	};
 
-	useEffect(() => {
-		if (!result.isSuccess || result.isFetching) return;
-
-		dispatch(bordersActs.setBoards(result.data));
-	}, [result.isSuccess, result.isFetching]);
-
-	return <Root onClick={forcedRefetch}>List of all available boards {isInvalid ? 'true' : 'false'}</Root>;
+	return (
+		<Root onClick={forcedRefetch}>
+			<BoardsList isFetching={result.isFetching} />
+		</Root>
+	);
 };
 
 export default Main;

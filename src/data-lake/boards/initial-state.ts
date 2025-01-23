@@ -5,7 +5,8 @@ const initialState: BoardsSliceT = {
 	allIds: [],
 	cachedAt: 0,
 	categories: [],
-	boardsByCategory: {}
+	boardsByCategory: {},
+	favorites: []
 };
 
 export default initialState;

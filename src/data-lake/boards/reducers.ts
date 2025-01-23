@@ -1,41 +1,35 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { BoardT, BoardsSliceT } from './boards.d';
 
-import initialState from './initial-state';
-
 export const setBoards = {
 	reducer: (slice: BoardsSliceT, action: PayloadAction<BoardT[]>) => {
 		const boards = action.payload;
 
-		/*
-		 * Reset state
-		 */
-		slice.byId = initialState.byId;
-		slice.allIds = initialState.allIds;
-		slice.categories = initialState.categories;
-		slice.boardsByCategory = initialState.boardsByCategory;
+		const newSlice = {
+			byId: {} as BoardsSliceT['byId'],
+			allIds: [] as BoardsSliceT['allIds'],
+			categories: [] as BoardsSliceT['categories'],
+			boardsByCategory: {} as BoardsSliceT['boardsByCategory'],
+			favorites: slice.favorites as BoardsSliceT['favorites'],
+			cachedAt: Date.now() as BoardsSliceT['cachedAt']
+		};
 
 		for (const board of boards) {
-			slice.allIds.push(board.id);
-			slice.byId[board.id] = board;
+			newSlice.allIds.push(board.id);
+			newSlice.byId[board.id] = board;
 
-			slice.categories = [...new Set([...slice.categories, board.category])];
-
-			if (!slice.boardsByCategory[board.category]) {
-				slice.boardsByCategory[board.category] = [];
+			if (!newSlice.categories.includes(board.category)) {
+				newSlice.categories.push(board.category);
 			}
 
-			slice.boardsByCategory[board.category].push(board.id);
+			if (!newSlice.boardsByCategory[board.category]) {
+				newSlice.boardsByCategory[board.category] = [];
+			}
+
+			newSlice.boardsByCategory[board.category].push(board.id);
 		}
 
-		slice.cachedAt = Date.now();
+		return newSlice;
 	},
 	prepare: (payload: BoardT[]) => ({ payload })
-};
-
-export const invalidateBoards = {
-	reducer: (slice: BoardsSliceT) => {
-		slice.cachedAt = initialState.cachedAt;
-	},
-	prepare: (payload: void) => ({ payload })
 };

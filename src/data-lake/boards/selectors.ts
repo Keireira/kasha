@@ -8,6 +8,22 @@ export const allBoardsSelector = createSelector([boardsSelector], (boards) => {
 	return boards.allIds.map((id) => boards.byId[id]);
 });
 
+export const boardsByCategorySelector = createSelector([boardsSelector], (boards) => {
+	const result: Record<string, BoardT[]> = {};
+
+	boards.allIds.forEach((id) => {
+		const board = boards.byId[id];
+
+		if (!result[board.category]) {
+			result[board.category] = [];
+		}
+
+		result[board.category].push(board);
+	});
+
+	return result;
+});
+
 const QUARTER_DAY = 6 * 60 * 60 * 1000;
 export const isInvalidSelector = createSelector([boardsSelector], (boards) => {
 	if (!boards.allIds.length) return true;
@@ -20,6 +36,6 @@ export const boardSelector = createSelector(
 	(boards, boardId) => boards.byId[boardId]
 );
 
-export const activeBoardsSelector = createSelector([allBoardsSelector], (boards) =>
-	boards.filter((board) => board.enable_posting)
-);
+export const favoriteBoardsSelector = createSelector([boardsSelector], (boards) => {
+	return boards.favorites.map((id) => boards.byId[id]);
+});

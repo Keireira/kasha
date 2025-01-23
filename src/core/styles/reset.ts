@@ -98,6 +98,10 @@ const Reset = createGlobalStyle`
 		}
 	}
 
+	b {
+		font-weight: bold;
+	}
+
 	${'' /* Hide the overflow in IE. */}
 	svg:not(:root) {
 		overflow: hidden;

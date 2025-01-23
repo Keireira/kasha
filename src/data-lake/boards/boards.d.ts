@@ -42,4 +42,5 @@ export type BoardsSliceT = {
 	cachedAt: number;
 	categories: string[];
 	boardsByCategory: Record<string, string[]>;
+	favorites: string[];
 };
