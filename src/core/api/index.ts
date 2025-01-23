@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery, retry, FetchArgs } from '@reduxjs/toolkit/query/react';
-
 import { isPlainObject } from '@utils';
 
 const onSuccessHd = (response: Response) => {

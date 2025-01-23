@@ -16,7 +16,7 @@ import { Route as BoardRouteImport } from './core/routes/_board/route'
 import { Route as IndexImport } from './core/routes/index'
 import { Route as ProfileIndexImport } from './core/routes/profile/index'
 import { Route as BoardBoardIdIndexImport } from './core/routes/_board/$boardId.index'
-import { Route as BoardBoardIdThreadIdImport } from './core/routes/_board/$boardId.$threadId'
+import { Route as BoardBoardIdResThreadIdImport } from './core/routes/_board/$boardId.res.$threadId'
 
 // Create/Update Routes
 
@@ -49,9 +49,9 @@ const BoardBoardIdIndexRoute = BoardBoardIdIndexImport.update({
   getParentRoute: () => BoardRouteRoute,
 } as any)
 
-const BoardBoardIdThreadIdRoute = BoardBoardIdThreadIdImport.update({
-  id: '/$boardId/$threadId',
-  path: '/$boardId/$threadId',
+const BoardBoardIdResThreadIdRoute = BoardBoardIdResThreadIdImport.update({
+  id: '/$boardId/res/$threadId',
+  path: '/$boardId/res/$threadId',
   getParentRoute: () => BoardRouteRoute,
 } as any)
 
@@ -87,18 +87,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileIndexImport
       parentRoute: typeof ProfileRouteImport
     }
-    '/_board/$boardId/$threadId': {
-      id: '/_board/$boardId/$threadId'
-      path: '/$boardId/$threadId'
-      fullPath: '/$boardId/$threadId'
-      preLoaderRoute: typeof BoardBoardIdThreadIdImport
-      parentRoute: typeof BoardRouteImport
-    }
     '/_board/$boardId/': {
       id: '/_board/$boardId/'
       path: '/$boardId'
       fullPath: '/$boardId'
       preLoaderRoute: typeof BoardBoardIdIndexImport
+      parentRoute: typeof BoardRouteImport
+    }
+    '/_board/$boardId/res/$threadId': {
+      id: '/_board/$boardId/res/$threadId'
+      path: '/$boardId/res/$threadId'
+      fullPath: '/$boardId/res/$threadId'
+      preLoaderRoute: typeof BoardBoardIdResThreadIdImport
       parentRoute: typeof BoardRouteImport
     }
   }
@@ -107,13 +107,13 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface BoardRouteRouteChildren {
-  BoardBoardIdThreadIdRoute: typeof BoardBoardIdThreadIdRoute
   BoardBoardIdIndexRoute: typeof BoardBoardIdIndexRoute
+  BoardBoardIdResThreadIdRoute: typeof BoardBoardIdResThreadIdRoute
 }
 
 const BoardRouteRouteChildren: BoardRouteRouteChildren = {
-  BoardBoardIdThreadIdRoute: BoardBoardIdThreadIdRoute,
   BoardBoardIdIndexRoute: BoardBoardIdIndexRoute,
+  BoardBoardIdResThreadIdRoute: BoardBoardIdResThreadIdRoute,
 }
 
 const BoardRouteRouteWithChildren = BoardRouteRoute._addFileChildren(
@@ -137,16 +137,16 @@ export interface FileRoutesByFullPath {
   '': typeof BoardRouteRouteWithChildren
   '/profile': typeof ProfileRouteRouteWithChildren
   '/profile/': typeof ProfileIndexRoute
-  '/$boardId/$threadId': typeof BoardBoardIdThreadIdRoute
   '/$boardId': typeof BoardBoardIdIndexRoute
+  '/$boardId/res/$threadId': typeof BoardBoardIdResThreadIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof BoardRouteRouteWithChildren
   '/profile': typeof ProfileIndexRoute
-  '/$boardId/$threadId': typeof BoardBoardIdThreadIdRoute
   '/$boardId': typeof BoardBoardIdIndexRoute
+  '/$boardId/res/$threadId': typeof BoardBoardIdResThreadIdRoute
 }
 
 export interface FileRoutesById {
@@ -155,8 +155,8 @@ export interface FileRoutesById {
   '/_board': typeof BoardRouteRouteWithChildren
   '/profile': typeof ProfileRouteRouteWithChildren
   '/profile/': typeof ProfileIndexRoute
-  '/_board/$boardId/$threadId': typeof BoardBoardIdThreadIdRoute
   '/_board/$boardId/': typeof BoardBoardIdIndexRoute
+  '/_board/$boardId/res/$threadId': typeof BoardBoardIdResThreadIdRoute
 }
 
 export interface FileRouteTypes {
@@ -166,18 +166,18 @@ export interface FileRouteTypes {
     | ''
     | '/profile'
     | '/profile/'
-    | '/$boardId/$threadId'
     | '/$boardId'
+    | '/$boardId/res/$threadId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/profile' | '/$boardId/$threadId' | '/$boardId'
+  to: '/' | '' | '/profile' | '/$boardId' | '/$boardId/res/$threadId'
   id:
     | '__root__'
     | '/'
     | '/_board'
     | '/profile'
     | '/profile/'
-    | '/_board/$boardId/$threadId'
     | '/_board/$boardId/'
+    | '/_board/$boardId/res/$threadId'
   fileRoutesById: FileRoutesById
 }
 
@@ -214,8 +214,8 @@ export const routeTree = rootRoute
     "/_board": {
       "filePath": "_board/route.tsx",
       "children": [
-        "/_board/$boardId/$threadId",
-        "/_board/$boardId/"
+        "/_board/$boardId/",
+        "/_board/$boardId/res/$threadId"
       ]
     },
     "/profile": {
@@ -228,12 +228,12 @@ export const routeTree = rootRoute
       "filePath": "profile/index.tsx",
       "parent": "/profile"
     },
-    "/_board/$boardId/$threadId": {
-      "filePath": "_board/$boardId.$threadId.tsx",
-      "parent": "/_board"
-    },
     "/_board/$boardId/": {
       "filePath": "_board/$boardId.index.tsx",
+      "parent": "/_board"
+    },
+    "/_board/$boardId/res/$threadId": {
+      "filePath": "_board/$boardId.res.$threadId.tsx",
       "parent": "/_board"
     }
   }
