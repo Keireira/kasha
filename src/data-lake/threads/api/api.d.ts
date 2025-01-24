@@ -23,7 +23,7 @@ export type GetThreadsResT = {
 };
 export type GetThreadsReqT = {
 	boardId: BoardT['id'];
-	page: number | 'index';
+	page: number;
 };
 
 /*

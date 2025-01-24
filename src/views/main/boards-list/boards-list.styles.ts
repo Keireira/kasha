@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-export const BoardLink = styled.div`
+export const BoardLi = styled.li`
 	display: flex;
 	width: fit-content;
 	padding: 16px 24px;
-	color: #ff6600;
+	color: #f60;
 	background-color: #ddd;
 	border-radius: 4px;
 `;
 
-export const BoardsSection = styled.ul`
+export const BoardsUl = styled.ul`
 	display: flex;
 	flex-direction: column;
 	gap: 16px;

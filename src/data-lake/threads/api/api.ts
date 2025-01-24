@@ -15,8 +15,8 @@ const boardsApi = API.injectEndpoints({
 		 * Get list of threads of the board
 		 */
 		getBoardThreads: build.query<GetThreadsResT, GetThreadsReqT>({
-			query: ({ boardId, page = 'index' }) => ({
-				url: `/${boardId}/${page}.json`,
+			query: ({ boardId, page }) => ({
+				url: `/${boardId}/${page > 0 ? page : 'index'}.json`,
 				method: 'GET'
 			})
 		}),

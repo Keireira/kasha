@@ -11,6 +11,12 @@ import BoardsList from './boards-list';
 
 import type { Props } from './main.d';
 
+/*
+ * @TODO:
+ *
+ * 1. Add forced refresh by pulling the top of the page
+ */
+
 const Main = (_props: Props) => {
 	const dispatch = useAppDispatch();
 	/*

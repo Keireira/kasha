@@ -33,3 +33,25 @@ export const setBoards = {
 	},
 	prepare: (payload: BoardT[]) => ({ payload })
 };
+
+export const addBoard = {
+	reducer: (slice: BoardsSliceT, action: PayloadAction<BoardT>) => {
+		const board = action.payload;
+
+		slice.allIds = [...new Set([...slice.allIds, board.id])];
+		slice.byId[board.id] = board;
+
+		if (!slice.categories.includes(board.category)) {
+			slice.categories.push(board.category);
+		}
+
+		if (!slice.boardsByCategory[board.category]) {
+			slice.boardsByCategory[board.category] = [];
+		}
+
+		slice.boardsByCategory[board.category].push(board.id);
+
+		return slice;
+	},
+	prepare: (payload: BoardT) => ({ payload })
+};

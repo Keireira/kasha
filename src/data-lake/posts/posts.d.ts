@@ -36,3 +36,11 @@ export type PostT = {
 	trip: string;
 	views: number;
 };
+
+export type PostsSliceT = Record<string, Record<number, PostT>>;
+
+// const posts = {
+// 	b: {
+// 		123: {}
+// 	}
+// };
