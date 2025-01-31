@@ -4,7 +4,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import CountryOneView from '@views/country-one';
 
 type SearchParams = {
-	view?: 'about' | 'stats' | 'ratings';
+	view?: 'about' | 'stats' | 'reviews';
 };
 
 const TargetComponent = () => {

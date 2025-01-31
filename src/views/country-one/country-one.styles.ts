@@ -1,6 +1,18 @@
 import styled from 'styled-components';
 import media from '@styles/media';
 
+export const Info = styled.div`
+	width: 60vw;
+	padding: 36px 24px;
+	color: var(--white);
+	font-weight: 500;
+	font-size: 18px;
+	background-color: var(--bg-color-dark);
+	border-radius: 16px;
+	box-shadow: 0 0 6px -3px var(--accent);
+	cursor: pointer;
+`;
+
 export const Tab = styled.div`
 	width: fit-content;
 	padding: 14px 18px;
@@ -8,7 +20,7 @@ export const Tab = styled.div`
 	font-weight: 500;
 	font-size: 18px;
 	background-color: var(--bg-color-dark);
-	border-radius: 18px;
+	border-radius: 16px;
 	box-shadow: 0 0 6px -3px var(--accent);
 	cursor: pointer;
 
@@ -19,6 +31,7 @@ export const Tab = styled.div`
 
 export const Tabs = styled.div`
 	display: grid;
+	grid-auto-columns: min-content;
 	grid-auto-flow: column;
 	gap: 18px;
 `;
@@ -42,7 +55,11 @@ export const Header = styled.hgroup`
 	justify-content: start;
 `;
 
-export const Main = styled.article``;
+export const Main = styled.article`
+	display: grid;
+	grid-auto-flow: row;
+	gap: 24px;
+`;
 
 export default styled.section`
 	display: grid;

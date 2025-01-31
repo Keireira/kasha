@@ -4,17 +4,22 @@ import { Link } from '@tanstack/react-router';
 
 import { countryByIdSelector } from '@data/countries/selectors';
 
-import Root, { Header, Name, Slogan, Main, Tabs, Tab } from './country-one.styles';
+import About from './about';
+import Stats from './stats';
+import Reviews from './reviews';
+import Root, { Header, Name, Slogan, Main, Tabs, Tab, Info } from './country-one.styles';
 
 import type { Props } from './country-one.d';
 
-const TABS = [
-	{ id: 'about', label: 'About' },
-	{ id: 'stats', label: 'Stats' },
-	{ id: 'ratings', label: 'Ratings' }
-];
+type TabView = 'about' | 'stats' | 'reviews';
 
-const CountryOne = ({ countryId }: Props) => {
+const TABS = [
+	{ id: 'about' as TabView, label: 'About' },
+	{ id: 'stats' as TabView, label: 'Stats' },
+	{ id: 'reviews' as TabView, label: 'Reviews' }
+] as const;
+
+const CountryOne = ({ view, countryId }: Props) => {
 	const country = useSelector((state) => countryByIdSelector(state, countryId));
 
 	if (!country) {
@@ -24,13 +29,16 @@ const CountryOne = ({ countryId }: Props) => {
 	return (
 		<Root>
 			<Header>
-				<Name>{country.name}</Name>
+				<Name>
+					{country.flag}&nbsp;{country.name}
+				</Name>
 				<Slogan>{country.slogan || 'Check opinion about that country!'}</Slogan>
 			</Header>
 
 			<Main>
 				<Tabs>
 					{TABS.map((tab) => (
+						// @ts-ignore
 						<Tab
 							as={Link}
 							key={tab.id}
@@ -42,6 +50,12 @@ const CountryOne = ({ countryId }: Props) => {
 						</Tab>
 					))}
 				</Tabs>
+
+				<Info>
+					{view === 'about' && <About countryId={countryId} />}
+					{view === 'stats' && <Stats countryId={countryId} />}
+					{view === 'reviews' && <Reviews countryId={countryId} />}
+				</Info>
 			</Main>
 		</Root>
 	);
