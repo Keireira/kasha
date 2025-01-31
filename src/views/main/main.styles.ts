@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import media from '@styles/media';
 
-export const ShortTitle = styled.span`
-	display: none;
-`;
+export const ShortTitle = styled.span``;
 
 export const FullTitle = styled.span`
-	${media.mobile} {
-		display: none;
+	display: none;
+
+	${media.small} {
+		display: unset;
 
 		& + ${ShortTitle} {
-			display: unset;
+			display: none;
 		}
 	}
 `;
@@ -60,31 +60,30 @@ export const Header = styled.header`
 	top: 0;
 	right: 0;
 	left: 0;
+	z-index: 9999;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	height: 64px;
-	padding-right: 48px;
-	padding-left: 48px;
+	padding-right: 24px;
+	padding-left: 24px;
 	color: var(--primary-text);
 	background-color: var(--bg-color-dark);
 
-	${media.mobile} {
-		padding-right: 24px;
-		padding-left: 24px;
+	${media.small} {
+		padding-right: 48px;
+		padding-left: 48px;
 	}
 `;
 
 export const Main = styled.main`
 	margin-top: 64px;
+	padding-top: 24px;
+	padding-right: 12px;
+	padding-left: 12px;
 	color: var(--primary-text);
-	padding-top: 36px;
-	padding-right: 48px;
-	padding-left: 48px;
 
-	${media.mobile} {
-		padding-top: 24px;
-		padding-right: 24px;
-		padding-left: 24px;
+	${media.small} {
+		padding-top: 36px;
 	}
 `;

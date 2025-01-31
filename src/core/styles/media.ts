@@ -1,9 +1,15 @@
 const breakpoints = {
-	mobile: '580px'
+	small: '580px',
+	medium: '768px',
+	large: '1024px',
+	xl: '1200px'
 };
 
 const media = {
-	mobile: `@media (max-width: ${breakpoints.mobile})`
+	small: `@media (${breakpoints.small} <= width)`,
+	medium: `@media (${breakpoints.medium} <= width)`,
+	large: `@media (${breakpoints.large} <= width)`,
+	xl: `@media (${breakpoints.xl} <= width)`
 };
 
 export default media;

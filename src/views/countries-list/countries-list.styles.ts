@@ -1,3 +1,21 @@
 import styled from 'styled-components';
+import media from '@styles/media';
 
-export default styled.div``;
+export default styled.div`
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	margin: 0 auto;
+	padding: 20px;
+
+	${media.medium} {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	${media.large} {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	${media.xl} {
+		grid-template-columns: repeat(4, 1fr);
+	}
+`;
