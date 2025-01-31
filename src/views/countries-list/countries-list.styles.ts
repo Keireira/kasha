@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import media from '@styles/media';
 
-export default styled.div`
+export const Countries = styled.div`
 	display: grid;
 	grid-template-columns: repeat(1, 1fr);
+	width: 100%;
 	margin: 0 auto;
 	padding: 20px;
 
@@ -17,5 +18,15 @@ export default styled.div`
 
 	${media.xl} {
 		grid-template-columns: repeat(4, 1fr);
+	}
+`;
+
+export default styled.div`
+	display: grid;
+	grid-auto-flow: row;
+	gap: 24px;
+
+	${media.small} {
+		gap: 48px;
 	}
 `;
