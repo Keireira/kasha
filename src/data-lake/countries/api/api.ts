@@ -13,7 +13,7 @@ const idApi = API.injectEndpoints({
 		}),
 		getCountry: build.query<GetCountryResT, GetCountryReqT>({
 			query: ({ countryId }) => ({
-				url: 'https://raw.githubusercontent.com/Keireira/kasha/refs/heads/master/datasets/countries.json',
+				url: `https://raw.githubusercontent.com/Keireira/kasha/refs/heads/master/datasets/about/${countryId}.json`,
 				method: 'GET'
 			})
 		})

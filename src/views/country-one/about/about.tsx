@@ -14,7 +14,21 @@ const CountryAbout = ({ countryId }: Props) => {
 		return null;
 	}
 
-	return <Root>About</Root>;
+	const langTitle = (country.languages?.length ?? 0) > 1 ? 'Languages' : 'Language';
+
+	return (
+		<Root>
+			<h1>{langTitle}</h1>
+			<ul>{country.languages?.map((lang) => <li key={lang}>{lang}</li>)}</ul>
+
+			<h1>Currency</h1>
+			<p>{country.currency}</p>
+
+			<h1>Capital</h1>
+			<p>{country.capital}</p>
+			{country.description}
+		</Root>
+	);
 };
 
 export default CountryAbout;

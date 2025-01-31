@@ -2,15 +2,18 @@ import styled from 'styled-components';
 import media from '@styles/media';
 
 export const Info = styled.div`
-	width: 60vw;
-	padding: 36px 24px;
+	width: 90vw;
+	padding: 24px 24px 48px;
 	color: var(--white);
 	font-weight: 500;
 	font-size: 18px;
 	background-color: var(--bg-color-dark);
 	border-radius: 16px;
-	box-shadow: 0 0 6px -3px var(--accent);
-	cursor: pointer;
+	box-shadow: 0 0 6px -4px var(--accent);
+
+	${media.small} {
+		width: 60vw;
+	}
 `;
 
 export const Tab = styled.div`

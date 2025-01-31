@@ -17,10 +17,30 @@ export const updateCountries = {
 		const countries = action.payload;
 
 		countries.forEach((country) => {
-			slice.byId[country.alpha_2] = country;
+			const id = country.alpha_2.toLowerCase();
 
-			slice.allIds = [...new Set([...slice.allIds, country.alpha_2])];
+			slice.byId[id] = {
+				...country,
+				alpha_2: id
+			};
+
+			slice.allIds = [...new Set([...slice.allIds, id])];
 		});
 	},
 	prepare: (payload: CountryT[]) => ({ payload })
+};
+
+export const setCountry = {
+	reducer: (slice: CountriesSlice, action: PayloadAction<CountryT>) => {
+		const country = action.payload;
+		const id = country.alpha_2.toLowerCase();
+
+		slice.byId[id] = {
+			...country,
+			alpha_2: id
+		};
+
+		slice.allIds = [...new Set([...slice.allIds, id])];
+	},
+	prepare: (payload: CountryT) => ({ payload })
 };

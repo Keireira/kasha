@@ -14,7 +14,12 @@ const CountryStats = ({ countryId }: Props) => {
 		return null;
 	}
 
-	return <Root>Stats (WIP)</Root>;
+	return (
+		<Root>
+			<h1>Population</h1>
+			<p>{country.population}</p>
+		</Root>
+	);
 };
 
 export default CountryStats;
