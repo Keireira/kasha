@@ -11,21 +11,12 @@
 // Import Routes
 
 import { Route as rootRoute } from './core/routes/__root'
-import { Route as LanguagesRouteImport } from './core/routes/languages/route'
 import { Route as CountriesRouteImport } from './core/routes/countries/route'
 import { Route as IndexImport } from './core/routes/index'
-import { Route as LanguagesIndexImport } from './core/routes/languages/index'
 import { Route as CountriesIndexImport } from './core/routes/countries/index'
-import { Route as LanguagesLanguageImport } from './core/routes/languages/$language'
 import { Route as CountriesCountryImport } from './core/routes/countries/$country'
 
 // Create/Update Routes
-
-const LanguagesRouteRoute = LanguagesRouteImport.update({
-  id: '/languages',
-  path: '/languages',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const CountriesRouteRoute = CountriesRouteImport.update({
   id: '/countries',
@@ -39,22 +30,10 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const LanguagesIndexRoute = LanguagesIndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => LanguagesRouteRoute,
-} as any)
-
 const CountriesIndexRoute = CountriesIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => CountriesRouteRoute,
-} as any)
-
-const LanguagesLanguageRoute = LanguagesLanguageImport.update({
-  id: '/$language',
-  path: '/$language',
-  getParentRoute: () => LanguagesRouteRoute,
 } as any)
 
 const CountriesCountryRoute = CountriesCountryImport.update({
@@ -81,13 +60,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CountriesRouteImport
       parentRoute: typeof rootRoute
     }
-    '/languages': {
-      id: '/languages'
-      path: '/languages'
-      fullPath: '/languages'
-      preLoaderRoute: typeof LanguagesRouteImport
-      parentRoute: typeof rootRoute
-    }
     '/countries/$country': {
       id: '/countries/$country'
       path: '/$country'
@@ -95,26 +67,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CountriesCountryImport
       parentRoute: typeof CountriesRouteImport
     }
-    '/languages/$language': {
-      id: '/languages/$language'
-      path: '/$language'
-      fullPath: '/languages/$language'
-      preLoaderRoute: typeof LanguagesLanguageImport
-      parentRoute: typeof LanguagesRouteImport
-    }
     '/countries/': {
       id: '/countries/'
       path: '/'
       fullPath: '/countries/'
       preLoaderRoute: typeof CountriesIndexImport
       parentRoute: typeof CountriesRouteImport
-    }
-    '/languages/': {
-      id: '/languages/'
-      path: '/'
-      fullPath: '/languages/'
-      preLoaderRoute: typeof LanguagesIndexImport
-      parentRoute: typeof LanguagesRouteImport
     }
   }
 }
@@ -135,88 +93,44 @@ const CountriesRouteRouteWithChildren = CountriesRouteRoute._addFileChildren(
   CountriesRouteRouteChildren,
 )
 
-interface LanguagesRouteRouteChildren {
-  LanguagesLanguageRoute: typeof LanguagesLanguageRoute
-  LanguagesIndexRoute: typeof LanguagesIndexRoute
-}
-
-const LanguagesRouteRouteChildren: LanguagesRouteRouteChildren = {
-  LanguagesLanguageRoute: LanguagesLanguageRoute,
-  LanguagesIndexRoute: LanguagesIndexRoute,
-}
-
-const LanguagesRouteRouteWithChildren = LanguagesRouteRoute._addFileChildren(
-  LanguagesRouteRouteChildren,
-)
-
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/countries': typeof CountriesRouteRouteWithChildren
-  '/languages': typeof LanguagesRouteRouteWithChildren
   '/countries/$country': typeof CountriesCountryRoute
-  '/languages/$language': typeof LanguagesLanguageRoute
   '/countries/': typeof CountriesIndexRoute
-  '/languages/': typeof LanguagesIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/countries/$country': typeof CountriesCountryRoute
-  '/languages/$language': typeof LanguagesLanguageRoute
   '/countries': typeof CountriesIndexRoute
-  '/languages': typeof LanguagesIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/countries': typeof CountriesRouteRouteWithChildren
-  '/languages': typeof LanguagesRouteRouteWithChildren
   '/countries/$country': typeof CountriesCountryRoute
-  '/languages/$language': typeof LanguagesLanguageRoute
   '/countries/': typeof CountriesIndexRoute
-  '/languages/': typeof LanguagesIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/countries'
-    | '/languages'
-    | '/countries/$country'
-    | '/languages/$language'
-    | '/countries/'
-    | '/languages/'
+  fullPaths: '/' | '/countries' | '/countries/$country' | '/countries/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/countries/$country'
-    | '/languages/$language'
-    | '/countries'
-    | '/languages'
-  id:
-    | '__root__'
-    | '/'
-    | '/countries'
-    | '/languages'
-    | '/countries/$country'
-    | '/languages/$language'
-    | '/countries/'
-    | '/languages/'
+  to: '/' | '/countries/$country' | '/countries'
+  id: '__root__' | '/' | '/countries' | '/countries/$country' | '/countries/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CountriesRouteRoute: typeof CountriesRouteRouteWithChildren
-  LanguagesRouteRoute: typeof LanguagesRouteRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CountriesRouteRoute: CountriesRouteRouteWithChildren,
-  LanguagesRouteRoute: LanguagesRouteRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -230,8 +144,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/countries",
-        "/languages"
+        "/countries"
       ]
     },
     "/": {
@@ -244,28 +157,13 @@ export const routeTree = rootRoute
         "/countries/"
       ]
     },
-    "/languages": {
-      "filePath": "languages/route.tsx",
-      "children": [
-        "/languages/$language",
-        "/languages/"
-      ]
-    },
     "/countries/$country": {
       "filePath": "countries/$country.tsx",
       "parent": "/countries"
     },
-    "/languages/$language": {
-      "filePath": "languages/$language.tsx",
-      "parent": "/languages"
-    },
     "/countries/": {
       "filePath": "countries/index.tsx",
       "parent": "/countries"
-    },
-    "/languages/": {
-      "filePath": "languages/index.tsx",
-      "parent": "/languages"
     }
   }
 }

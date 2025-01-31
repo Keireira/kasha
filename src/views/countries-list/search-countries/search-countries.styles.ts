@@ -9,6 +9,7 @@ export const Input = styled.input`
 	background-color: transparent;
 	border: none;
 	border-bottom: 2px solid var(--accent);
+	border-radius: 0;
 
 	&:focus-visible {
 		box-shadow: none;

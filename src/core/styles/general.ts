@@ -9,6 +9,9 @@ const General = createGlobalStyle`
 		--bg-color: #2A2A2A;
 		--bg-color-dark: #232323;
 		--accent: #8CC5C5;
+		--primary-text: #D3D3D3;
+		--secondary-text: #5A5A5A;
+		--white: #fafafa;
 
 		--popup-bg: #fefefe;
 
@@ -22,8 +25,7 @@ const General = createGlobalStyle`
 
 		/* Typography */
 		--error: #D9534F;
-		--primary-text: #D3D3D3;
-		--secondary-text: #5A5A5A;
+
 		--light-text: #eee;
 
 		/* Inputs */

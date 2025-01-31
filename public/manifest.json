@@ -3,11 +3,11 @@
   "short_name": "Kasha",
   "start_url": "/?source=pwa",
   "display": "standalone",
-  "background_color": "#FF9800",
+  "background_color": "#2A2A2A",
   "lang": "en",
   "scope": "/",
-  "description": "Каша — приложение для iOS и Android для скроллинга двачей",
-  "theme_color": "#FF9800",
+  "description": "Something about countries",
+  "theme_color": "#2A2A2A",
   "id": "kasha-5702b80f-4bcc-4efe-8403-85f7febf90a0",
   "icons": [
     {

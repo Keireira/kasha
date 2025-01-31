@@ -1,4 +1,4 @@
 export type Props = {
-	country: string;
+	countryId: string;
 	view?: 'about' | 'stats' | 'ratings';
 };

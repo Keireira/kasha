@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import media from '@styles/media';
 
+export const Empty = styled.div`
+	width: fit-content;
+	padding: 12px 4px;
+	color: var(--primary-text);
+	font-size: 24px;
+	place-self: center;
+`;
+
 export const Countries = styled.div`
 	display: grid;
 	grid-template-columns: repeat(1, 1fr);

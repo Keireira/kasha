@@ -1,3 +1,5 @@
 # Kasha
 
-Example of repository for front-end
+[![Netlify Status](https://api.netlify.com/api/v1/badges/aa465ec9-27c1-4576-aa52-8415a4288d52/deploy-status)](https://app.netlify.com/sites/kasha/deploys)
+
+Example project for front-end, which I use as a ref

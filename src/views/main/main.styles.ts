@@ -42,7 +42,8 @@ export const Navigation = styled.nav`
 
 export const Globe = styled.div`
 	color: var(--accent);
-	font-size: 28px;
+	font-weight: 100;
+	font-size: 36px;
 `;
 
 export const Heading = styled.h3`

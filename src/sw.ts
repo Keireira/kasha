@@ -10,7 +10,7 @@ declare let self: ServiceWorkerGlobalScope;
 
 self.__WB_DISABLE_DEV_LOGS = true;
 
-const API_DOMAIN = '2ch.hk';
+const API_DOMAIN = '';
 
 // Precache and cleanup
 precacheAndRoute(self.__WB_MANIFEST);

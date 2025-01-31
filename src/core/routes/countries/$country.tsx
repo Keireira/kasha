@@ -11,7 +11,7 @@ const TargetComponent = () => {
 	const { view } = Route.useSearch();
 	const { country } = Route.useParams();
 
-	return <CountryOneView country={country} view={view} />;
+	return <CountryOneView countryId={country} view={view} />;
 };
 
 export const Route = createFileRoute('/countries/$country')({

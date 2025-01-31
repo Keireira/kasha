@@ -14,10 +14,6 @@ const MainView = () => (
 				<NavItem as={Link} to="/countries" activeProps={{ className: 'active' }}>
 					Countries
 				</NavItem>
-
-				<NavItem as={Link} to="/languages" activeProps={{ className: 'active' }}>
-					Languages
-				</NavItem>
 			</Navigation>
 		</Header>
 
