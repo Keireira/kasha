@@ -19,7 +19,7 @@ const Post = ({ boardId, postId }) => {
 	// @todo: limit by 4
 	const post = useSelector((state) => postByIdSelector(state, boardId, postId));
 
-	return <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.comment) }} />;
+	return <div dangerouslySetInnerHTML={{ __html: post.comment }} />;
 };
 
 const Thread = ({ boardId, threadId }) => {

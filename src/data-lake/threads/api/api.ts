@@ -16,7 +16,7 @@ const boardsApi = API.injectEndpoints({
 		 */
 		getBoardThreads: build.query<GetThreadsResT, GetThreadsReqT>({
 			query: ({ boardId, page }) => ({
-				url: `/${boardId}/${page > 0 ? page : 'index'}.json`,
+				url: `/rmt/${boardId}/${page > 0 ? page : 'index'}.json`,
 				method: 'GET'
 			})
 		}),
@@ -26,7 +26,7 @@ const boardsApi = API.injectEndpoints({
 		 */
 		getThreadsCatalog: build.query<GetThreadsCatalogResT, GetThreadsCatalogReqT>({
 			query: ({ boardId, sort = 'bump' }) => ({
-				url: sort === 'bump' ? `/${boardId}/catalog.json` : `/${boardId}/catalog_num.json`,
+				url: sort === 'bump' ? `/rmt/${boardId}/catalog.json` : `/rmt/${boardId}/catalog_num.json`,
 				method: 'GET'
 			})
 		}),
@@ -36,7 +36,7 @@ const boardsApi = API.injectEndpoints({
 		 */
 		getFullThread: build.query<GetFullThreadResT, GetFullThreadReqT>({
 			query: ({ boardId, threadId }) => ({
-				url: `/${boardId}/res/${threadId}.json`,
+				url: `/rmt/${boardId}/res/${threadId}.json`,
 				method: 'GET'
 			})
 		})

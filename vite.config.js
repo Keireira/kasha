@@ -38,6 +38,14 @@ const config = ({ mode }) => {
 		VITE_BUILD_TIME: buildTime
 	};
 
+	const proxyConfig = {
+		'/rmt': {
+			target: process.env.VITE_TARGET_URL,
+			changeOrigin: true,
+			rewrite: (path) => path.replace(/^\/rmt/, '')
+		}
+	};
+
 	return defineConfig({
 		build: {
 			minify: 'terser',
@@ -101,10 +109,12 @@ const config = ({ mode }) => {
 		},
 		server: {
 			port: 4400,
-			open: true
+			open: true,
+			proxy: proxyConfig
 		},
 		preview: {
-			port: 4230
+			port: 4230,
+			proxy: proxyConfig
 		}
 	});
 };

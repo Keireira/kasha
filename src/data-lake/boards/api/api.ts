@@ -9,7 +9,7 @@ const boardsApi = API.injectEndpoints({
 		 */
 		getAllBoards: build.query<GetBoardsResT, GetBoardsReqT>({
 			query: () => ({
-				url: '/api/mobile/v2/boards',
+				url: '/rmt/api/mobile/v2/boards',
 				method: 'GET'
 			}),
 			providesTags: ['boards']
