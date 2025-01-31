@@ -11,48 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './core/routes/__root'
-import { Route as ProfileRouteImport } from './core/routes/profile/route'
-import { Route as BoardRouteImport } from './core/routes/_board/route'
 import { Route as IndexImport } from './core/routes/index'
-import { Route as ProfileIndexImport } from './core/routes/profile/index'
-import { Route as BoardBoardIdIndexImport } from './core/routes/_board/$boardId.index'
-import { Route as BoardBoardIdResThreadIdImport } from './core/routes/_board/$boardId.res.$threadId'
 
 // Create/Update Routes
-
-const ProfileRouteRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const BoardRouteRoute = BoardRouteImport.update({
-  id: '/_board',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any)
-
-const ProfileIndexRoute = ProfileIndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ProfileRouteRoute,
-} as any)
-
-const BoardBoardIdIndexRoute = BoardBoardIdIndexImport.update({
-  id: '/$boardId/',
-  path: '/$boardId/',
-  getParentRoute: () => BoardRouteRoute,
-} as any)
-
-const BoardBoardIdResThreadIdRoute = BoardBoardIdResThreadIdImport.update({
-  id: '/$boardId/res/$threadId',
-  path: '/$boardId/res/$threadId',
-  getParentRoute: () => BoardRouteRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -66,131 +32,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/_board': {
-      id: '/_board'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof BoardRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/profile/': {
-      id: '/profile/'
-      path: '/'
-      fullPath: '/profile/'
-      preLoaderRoute: typeof ProfileIndexImport
-      parentRoute: typeof ProfileRouteImport
-    }
-    '/_board/$boardId/': {
-      id: '/_board/$boardId/'
-      path: '/$boardId'
-      fullPath: '/$boardId'
-      preLoaderRoute: typeof BoardBoardIdIndexImport
-      parentRoute: typeof BoardRouteImport
-    }
-    '/_board/$boardId/res/$threadId': {
-      id: '/_board/$boardId/res/$threadId'
-      path: '/$boardId/res/$threadId'
-      fullPath: '/$boardId/res/$threadId'
-      preLoaderRoute: typeof BoardBoardIdResThreadIdImport
-      parentRoute: typeof BoardRouteImport
-    }
   }
 }
 
 // Create and export the route tree
 
-interface BoardRouteRouteChildren {
-  BoardBoardIdIndexRoute: typeof BoardBoardIdIndexRoute
-  BoardBoardIdResThreadIdRoute: typeof BoardBoardIdResThreadIdRoute
-}
-
-const BoardRouteRouteChildren: BoardRouteRouteChildren = {
-  BoardBoardIdIndexRoute: BoardBoardIdIndexRoute,
-  BoardBoardIdResThreadIdRoute: BoardBoardIdResThreadIdRoute,
-}
-
-const BoardRouteRouteWithChildren = BoardRouteRoute._addFileChildren(
-  BoardRouteRouteChildren,
-)
-
-interface ProfileRouteRouteChildren {
-  ProfileIndexRoute: typeof ProfileIndexRoute
-}
-
-const ProfileRouteRouteChildren: ProfileRouteRouteChildren = {
-  ProfileIndexRoute: ProfileIndexRoute,
-}
-
-const ProfileRouteRouteWithChildren = ProfileRouteRoute._addFileChildren(
-  ProfileRouteRouteChildren,
-)
-
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '': typeof BoardRouteRouteWithChildren
-  '/profile': typeof ProfileRouteRouteWithChildren
-  '/profile/': typeof ProfileIndexRoute
-  '/$boardId': typeof BoardBoardIdIndexRoute
-  '/$boardId/res/$threadId': typeof BoardBoardIdResThreadIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '': typeof BoardRouteRouteWithChildren
-  '/profile': typeof ProfileIndexRoute
-  '/$boardId': typeof BoardBoardIdIndexRoute
-  '/$boardId/res/$threadId': typeof BoardBoardIdResThreadIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/_board': typeof BoardRouteRouteWithChildren
-  '/profile': typeof ProfileRouteRouteWithChildren
-  '/profile/': typeof ProfileIndexRoute
-  '/_board/$boardId/': typeof BoardBoardIdIndexRoute
-  '/_board/$boardId/res/$threadId': typeof BoardBoardIdResThreadIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | ''
-    | '/profile'
-    | '/profile/'
-    | '/$boardId'
-    | '/$boardId/res/$threadId'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/profile' | '/$boardId' | '/$boardId/res/$threadId'
-  id:
-    | '__root__'
-    | '/'
-    | '/_board'
-    | '/profile'
-    | '/profile/'
-    | '/_board/$boardId/'
-    | '/_board/$boardId/res/$threadId'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BoardRouteRoute: typeof BoardRouteRouteWithChildren
-  ProfileRouteRoute: typeof ProfileRouteRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BoardRouteRoute: BoardRouteRouteWithChildren,
-  ProfileRouteRoute: ProfileRouteRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -203,38 +77,11 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/_board",
-        "/profile"
+        "/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
-    },
-    "/_board": {
-      "filePath": "_board/route.tsx",
-      "children": [
-        "/_board/$boardId/",
-        "/_board/$boardId/res/$threadId"
-      ]
-    },
-    "/profile": {
-      "filePath": "profile/route.tsx",
-      "children": [
-        "/profile/"
-      ]
-    },
-    "/profile/": {
-      "filePath": "profile/index.tsx",
-      "parent": "/profile"
-    },
-    "/_board/$boardId/": {
-      "filePath": "_board/$boardId.index.tsx",
-      "parent": "/_board"
-    },
-    "/_board/$boardId/res/$threadId": {
-      "filePath": "_board/$boardId.res.$threadId.tsx",
-      "parent": "/_board"
     }
   }
 }

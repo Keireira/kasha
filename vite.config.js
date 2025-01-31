@@ -104,7 +104,8 @@ const config = ({ mode }) => {
 				'@features': fileURLToPath(new URL('./src/features', import.meta.url)),
 				'@shared': fileURLToPath(new URL('./src/shared-units', import.meta.url)),
 				'@data': fileURLToPath(new URL('./src/data-lake', import.meta.url)),
-				'@views': fileURLToPath(new URL('./src/views', import.meta.url))
+				'@views': fileURLToPath(new URL('./src/views', import.meta.url)),
+				'@yup': fileURLToPath(new URL('./src/utils/yup', import.meta.url))
 			}
 		},
 		server: {

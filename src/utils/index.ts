@@ -1,5 +1,12 @@
 export { default as sleep } from './sleep';
 export { default as isPlainObject } from './is-plain-object';
+export { default as generateRandomName } from './random-name';
+export { default as colorizeWord } from './colorize-word';
+export { default as formatError } from './format-error';
+export { default as useBlockZoom } from './use-block-zoom';
+export { default as useThemeColor } from './use-theme-color';
+export { default as getTextColor } from './get-text-color';
+export { default as sortBy } from './sort-by';
 export { default as formatBytes } from './format-bytes';
 export { default as purgeIndexedDB } from './purge-db';
 export { default as purgeSWCache } from './purge-sw-cache';

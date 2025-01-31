@@ -1,11 +1,13 @@
 import React from 'react';
 
+import calcLines from './calcLines';
 import Root from './textarea.styles';
 
 import type { Props } from './textarea.d';
-import calcLines from './calcLines';
 
-const Textarea = React.forwardRef(({ innerRef, onChange, maxRows = 5, ...restProps }: Props, ref) => {
+const Textarea = React.forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
+	const { onChange, maxRows = 5, ...restProps } = props;
+
 	const onChangeHd = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		calcLines(e, maxRows);
 

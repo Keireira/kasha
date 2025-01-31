@@ -69,6 +69,9 @@
 
       "@shared": ["./src/shared-units/index"],
       "@shared/*": ["./src/shared-units/*"],
+
+      "@yup": ["./src/utils/yup/index"],
+      "@yup/*": ["./src/utils/yup/*"]
     }
   },
   "include": ["src"],

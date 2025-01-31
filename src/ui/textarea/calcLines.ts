@@ -1,4 +1,6 @@
-export const resetLineStyle = (target, maxRows: number) => {
+import React from 'react';
+
+export const resetLineStyle = (target: HTMLTextAreaElement) => {
 	const lineHeight = Number.parseInt(window.getComputedStyle(target).lineHeight, 10);
 
 	target.style.height = 'auto';
@@ -6,7 +8,7 @@ export const resetLineStyle = (target, maxRows: number) => {
 	target.style.overflowY = 'hidden';
 };
 
-const calcLines = (e, maxRows: number) => {
+const calcLines = (e: React.ChangeEvent<HTMLTextAreaElement>, maxRows: number) => {
 	const lines = e.target.value.split(/\r*\n/).length;
 
 	const lineHeight = Number.parseInt(window.getComputedStyle(e.target).lineHeight, 10);
