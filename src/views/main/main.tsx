@@ -1,59 +1,30 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch } from '@store';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { Outlet, Link } from '@tanstack/react-router';
 
-import { actions as bordersActs } from '@data/boards';
-import { isInvalidSelector } from '@data/boards/selectors';
-import boardsApi, { useGetAllBoardsQuery } from '@data/boards/api';
+import { Header, Main, Globe, Heading, Navigation, NavItem, FullTitle, ShortTitle } from './main.styles';
 
-import Root from './main.styles';
-import BoardsList from './boards-list';
+const MainView = () => (
+	<>
+		<Header>
+			<Heading>
+				<Globe>🌐︎</Globe> <FullTitle>Whatever country</FullTitle> <ShortTitle>WC</ShortTitle>
+			</Heading>
 
-import type { Props } from './main.d';
+			<Navigation>
+				<NavItem as={Link} to="/countries" activeProps={{ className: 'active' }}>
+					Countries
+				</NavItem>
 
-/*
- * @TODO:
- *
- * 1. Add forced refresh by pulling the top of the page
- */
+				<NavItem as={Link} to="/languages" activeProps={{ className: 'active' }}>
+					Languages
+				</NavItem>
+			</Navigation>
+		</Header>
 
-const Main = (_props: Props) => {
-	const dispatch = useAppDispatch();
-	/*
-	 * "Invalid" means there is no data in the store about boards, or the data is outdated
-	 */
-	const isInvalid = useSelector(isInvalidSelector);
-	const result = useGetAllBoardsQuery(undefined, {
-		skip: !isInvalid
-	});
+		<Main>
+			<Outlet />
+		</Main>
+	</>
+);
 
-	useEffect(() => {
-		if (!result.isSuccess || result.isFetching) return;
-		dispatch(bordersActs.setBoards(result.data));
-	}, [result.isSuccess, result.isFetching]);
-
-	const forcedRefetch = () => {
-		/*
-		 * If "skip: false", we can refetch by invalidating the tags
-		 * If "skip: true", we can't refetch by invalidating the tags, we have to initialize the query
-		 */
-		if (isInvalid) {
-			dispatch(boardsApi.util.invalidateTags(['boards']));
-		} else {
-			dispatch(
-				boardsApi.endpoints.getAllBoards.initiate(undefined, {
-					subscribe: false,
-					forceRefetch: true
-				})
-			);
-		}
-	};
-
-	return (
-		<Root onClick={forcedRefetch}>
-			<BoardsList isFetching={result.isFetching} />
-		</Root>
-	);
-};
-
-export default Main;
+export default MainView;

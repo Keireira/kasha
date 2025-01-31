@@ -36,6 +36,9 @@
       "@store": ["./src/core/store/index"],
       "@store/*": ["./src/core/store/*"],
 
+      "@styles": ["./src/core/styles/index"],
+      "@styles/*": ["./src/core/styles/*"],
+
       "@core": ["./src/core"],
       "@core/*": ["./src/core/*"],
 

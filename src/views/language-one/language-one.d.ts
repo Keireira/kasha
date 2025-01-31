@@ -1,3 +1,3 @@
 export type Props = {
-	isFetching: boolean;
+	language: string;
 };

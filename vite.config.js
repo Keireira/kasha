@@ -93,6 +93,7 @@ const config = ({ mode }) => {
 				'@src': fileURLToPath(new URL('./src', import.meta.url)),
 				'@api': fileURLToPath(new URL('./src/core/api', import.meta.url)),
 				'@store': fileURLToPath(new URL('./src/core/store', import.meta.url)),
+				'@styles': fileURLToPath(new URL('./src/core/styles', import.meta.url)),
 				'@core': fileURLToPath(new URL('./src/core', import.meta.url)),
 				'@ui': fileURLToPath(new URL('./src/ui', import.meta.url)),
 				'@utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
